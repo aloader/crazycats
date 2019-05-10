@@ -1,0 +1,100 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>com.test.servlet</groupId>
+    <artifactId>SimpleWebApp</artifactId>
+    <packaging>war</packaging>
+    <version>1.0</version>
+    <name>SimpleWebApp Maven Webapp</name>
+    <url>http://maven.apache.org</url>
+
+    <properties>
+        <servlet.version>3.1.0</servlet.version>
+        <maven.compiler.plugin.version>3.5.1</maven.compiler.plugin.version>
+
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>javax.servlet-api</artifactId>
+            <version>${servlet.version}</version>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <finalName>SimpleWebApp</finalName>
+        <plugins>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>${maven.compiler.plugin.version}</version>
+                <configuration>
+                    <!-- Java version-->
+                    <source>1.8</source>
+                    <target>1.8</target>
+                </configuration>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-war-plugin</artifactId>
+                <version>3.2.2</version>
+                <configuration>
+                </configuration>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-site-plugin</artifactId>
+                <version>3.7.1</version>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-project-info-reports-plugin</artifactId>
+                <version>3.0.0</version>
+                <configuration>
+                    <skip>true</skip>
+                </configuration>
+            </plugin>
+
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-deploy-plugin</artifactId>
+                <version>3.0.0-M1</version>
+                <configuration>
+                    <!--<file>${project.artifactId}.war</file>-->
+                    <url>file:///D:/apache-tomcat-8.5.40/webapps</url>
+                    <!--<url>http://localhost:8080/</url>-->
+                    <file>${proj}/${project.build.finalName}.war</file>
+                </configuration>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.tomcat.maven</groupId>
+                <artifactId>tomcat7-maven-plugin</artifactId>
+                <version>2.2</version>
+                <configuration>
+                    <server>TomcatServer</server>
+                    <mode>war</mode>
+                    <update>true</update>
+                </configuration>
+            </plugin>
+
+        </plugins>
+    </build>
+
+    <distributionManagement>
+        <repository>
+            <id>TomcatServer</id>
+            <name>MyTomcatServer</name>
+            <!--<url>http://localhost:8080/manager/</url>-->
+            <url>file:///D:/apache-tomcat-8.5.40/webapps/</url>
+
+        </repository>
+    </distributionManagement>
+
+</project>
